@@ -1,0 +1,28 @@
+management:
+  security:
+
+spring:
+    jndi-name: jdbc/Library
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        format_sql: true
+    show-sql: true
+
+
+logging:
+  file: c:\temp\app.log
+  pattern:
+    file: "%d{HH:mm:ss} %-5p [%c] - %m%n"
+
+  level:
+    ROOT: error
+    org.springframework: warn
+    javax.faces: warn
+    org.omnifaces: warn
+    org.springframework.security: warn
+    org.hibernate: warn
+    org.hibernate.type.descriptor.sql: warn
