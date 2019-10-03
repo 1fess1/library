@@ -64,12 +64,16 @@ public class PublisherService implements PublisherDao {
     public Page<Publisher> search(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, String... searchString) {
         log.trace("Search publishers by name in page");
         Page<Publisher> publishers = publisherRepository.findByNameContainingIgnoreCaseOrderByName(searchString[0], buildPageRequest(pageNumber, pageSize, sortField, sortDirection));
+        log.trace("Found publishers by name in page", getPublisherCount(publishers.getContent()));
         return publishers;
     }
 
     @Override
     public Publisher save(Publisher publisher) {
-        return publisherRepository.save(publisher);
+        log.trace("Try to save publisher");
+        Publisher savedPublisher = publisherRepository.save(publisher);
+        log.trace("Publisher was saved");
+        return savedPublisher;
     }
 
     @Override
